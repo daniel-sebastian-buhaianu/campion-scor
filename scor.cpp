@@ -12,13 +12,13 @@ struct NrMare
 void citesteNrMare(NrMare &);
 int comparaNrMari(NrMare, NrMare);
 void scadeNrMari(NrMare, NrMare, NrMare &);
-void imparteNrMareLaNrMic(NrMare, int, NrMare &, int &);
+void imparteNrMareLaNrMic(NrMare, int, NrMare &);
 void adunaNrMari(NrMare, NrMare, NrMare &);
 void afiseazaNrMare(NrMare);
 int main()
 {
-	int T, i, rest;
-	NrMare s, d, dif, a, b;
+	int T, i, ucs, ucd;
+	NrMare s, d, sum, dif, a, b;
 	fin >> T;
 	for (i = 0; i < T; i++)
 	{
@@ -30,18 +30,21 @@ int main()
 		}
 		else
 		{
+			adunaNrMari(s, d, sum);
 			scadeNrMari(s, d, dif);
-			imparteNrMareLaNrMic(dif, 2, a, rest);
-			if (rest)
+			ucs = (int)sum.cif[0];
+			ucd = (int)dif.cif[0];
+			if (ucs % 2 || ucd % 2)
 			{
 				fout << "impossible\n";
 			}
 			else
 			{
-				adunaNrMari(a, d, b);
-				afiseazaNrMare(b);
-				fout << ' ';
+				imparteNrMareLaNrMic(sum, 2, a);
+				imparteNrMareLaNrMic(dif, 2, b);
 				afiseazaNrMare(a);
+				fout << ' ';
+				afiseazaNrMare(b);
 				fout << '\n';
 			}
 		}
@@ -80,8 +83,9 @@ void adunaNrMari(NrMare a, NrMare b, NrMare & s)
 		s.cif[s.nrcif++] = t;
 	}
 }
-void imparteNrMareLaNrMic(NrMare a, int b, NrMare & nr, int & r)
+void imparteNrMareLaNrMic(NrMare a, int b, NrMare & nr)
 {
+	int r;
 	if (a.nrcif == 1 && a.cif[0] == 0)
 	{
 		r = nr.cif[0] = 0;
@@ -156,4 +160,4 @@ void citesteNrMare(NrMare & nr)
 		nr.cif[i] = 0;
 	}
 }
-// scor 10
+// scor 10/100 (nu inteleg de ce, toate testele imi ies)
