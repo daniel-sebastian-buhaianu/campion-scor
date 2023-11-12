@@ -21,16 +21,21 @@ int main()
     {
         citesteNrMare(s);
         citesteNrMare(d);
-        if (ultimaCifra(s)%2 || comparaNrMari(s, d) < 0)
+        if (comparaNrMari(s, d) < 0)
             fout << "impossible";
         else
         {
             scadeNrMari(s, d, aux);
-            imparteNrMareLaNrMic(aux, 2, b);
-            adunaNrMari(b, d, a);
-            afiseazaNrMare(a);
-            fout << ' ';
-            afiseazaNrMare(b);
+            if (ultimaCifra(aux)%2)
+                fout << "impossible";
+            else
+            {
+                imparteNrMareLaNrMic(aux, 2, b);
+                adunaNrMari(b, d, a);
+                afiseazaNrMare(a);
+                fout << ' ';
+                afiseazaNrMare(b);
+            }
         }
         fout << '\n';
     }
